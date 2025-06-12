@@ -52,7 +52,7 @@ export default function Prediksi() {
   const [user, setUser] = useState(null);
   const location = useLocation();
 
-  const url = 'http://localhost:8000';
+  const url = 'https://9r1lxdd5-5001.asse.devtunnels.ms';
   const symbol = currencyPairs[selectedPair];
 
   useEffect(() => {

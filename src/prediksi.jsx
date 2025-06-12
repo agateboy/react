@@ -43,7 +43,7 @@ export default function Prediksi({ onBack }) {
   const [prediction, setPrediction] = useState(null);
   const [probabilityUp, setProbabilityUp] = useState(null);
 
-  const url = 'https://flasknarastock.onrender.com';
+  const url = 'http://127.0.0.1:5001'; // Ganti dengan URL backend Anda jika diperlukan
   const symbol = currencyPairs[selectedPair];
 
   useEffect(() => {
