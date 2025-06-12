@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTentangPresenter } from './tentangPresenter';
 import './tentang.css';
+import AboutUsImage from '../../assets/logo.png';
 
 export default function TentangPage() {
   const { teamMembers, tentangKamiText } = useTentangPresenter();
@@ -9,14 +10,18 @@ export default function TentangPage() {
     <main className="text-black font-[Montserrat] px-6 py-12 max-w-[1120px] mx-auto">
       <section className="flex flex-col md:flex-row md:items-start md:space-x-20 about-us max-w-[800px] mx-auto">
         <img
-          src="https://storage.googleapis.com/a1aa/image/c0704c84-0c80-44fa-3560-55ea4bc64b79.jpg"
-          alt="Graduation"
+          src={AboutUsImage}
+          alt="Tentang Kami"
           className="w-full md:w-[400px] rounded-md object-cover mb-8 md:mb-0"
         />
         <div className="max-w-[400px]">
-          <h2 className="text-[#7cff36] text-xl font-extrabold mb-6 about-us-h2">Tentang Kami</h2>
+          <h2 className="text-[#7cff36] text-xl font-extrabold mb-6 about-us-h2 text-center md:text-left">
+            {' '}
+            Tentang Kami
+          </h2>
           {tentangKamiText.map((text, index) => (
-            <p key={index} className="about-us-p">
+            <p key={index} className="about-us-p text-center md:text-left">
+              {' '}
               {text}
             </p>
           ))}

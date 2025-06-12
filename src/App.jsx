@@ -13,6 +13,7 @@ import UserSignUpPage from './components/auth/user/user-register/user-signup-pag
 import UserLoginPage from './components/auth/user/user-login/user-login-page';
 import AdminDashboardPage from './components/auth/admin/dashboard/dashboard';
 import FiturPage from './components/fitur/fitur-page';
+import BookmarkPage from './components/bookmark/bookmark-page'; 
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -26,6 +27,7 @@ function App() {
     { name: 'Prediksi', path: '/prediksi' },
     { name: 'Tentang', path: '/tentang' },
     { name: 'Contact', path: '/contact' },
+
   ];
 
   return (
@@ -193,6 +195,25 @@ function App() {
           }
         />
         <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+
+     
+        <Route
+          path="/saved-articles"
+          element={
+            <>
+              <Header
+                menuOpen={menuOpen}
+                toggleMenu={toggleMenu}
+                setMenuOpen={setMenuOpen}
+                menuItems={menuItems}
+              />
+              <main>
+                <BookmarkPage /> 
+              </main>
+              <Footer />
+            </>
+          }
+        />
       </Routes>
     </Router>
   );

@@ -1,20 +1,29 @@
-/**
- * Mengambil daftar artikel dari backend Express.
- * @param {number} page - Nomor halaman yang diminta.
- * @param {number} limit - Jumlah artikel per halaman.
- * @returns {Promise<Array>} Promise berisi array objek artikel.
- */
+// articlePresenter.js
+import { fetchPaginatedArticles } from '../../services/Model.js'; // Import the new function from Model.js
+
 export const getArticles = async (page, limit) => {
   try {
-    const response = await fetch(
-      `https://naradev-backendup-production.up.railway.app/articles?page=${page}&limit=${limit}`,
-    );
-    if (!response.ok) throw new Error('Gagal mengambil artikel');
-    const data = await response.json();
-    // Data artikel ada di data.data (lihat contoh respons)
-    return data.data || [];
+    const response = await fetchPaginatedArticles(page, limit);
+    const dataArr = response.data || response;
+    const totalArticles = response.total || response.count || dataArr.length;
+
+    const mappedArticles = dataArr.map((item) => ({
+      id: item.id,
+      title: item.title,
+      excerpt: item.excerpt || item.content?.slice(0, 100) || '',
+      imageUrl: item.image || 'https://via.placeholder.com/600x320?text=No+Image',
+      imageAlt: item.title,
+      author: item.author_email || 'Unknown',
+      date: item.created_at ? new Date(item.created_at).toLocaleDateString() : '',
+      tags: [], 
+    }));
+
+    return {
+      articles: mappedArticles,
+      totalArticles: totalArticles,
+    };
   } catch (error) {
-    console.error(error);
-    return [];
+    console.error('Error in getArticles (Presenter):', error);
+    throw new Error('Failed to load articles: ' + error.message);
   }
 };

@@ -6,6 +6,7 @@ const ENDPOINTS = {
   loginAdmin: '/auth/login/admin',
   contacts: '/contacts',
   articles: '/articles',
+  bookmarks: '/bookmarks',
 };
 
 async function handleResponse(response) {
@@ -23,7 +24,6 @@ function getTokenOrThrow() {
   }
   return token;
 }
-
 
 export async function registerUser({ username, email, password }) {
   const response = await fetch(`${API_BASE_URL}${ENDPOINTS.registerUser}`, {
@@ -44,7 +44,6 @@ export async function loginUser({ email, password }) {
 
   return handleResponse(response);
 }
-
 
 export async function loginAdmin({ email, password }) {
   const response = await fetch(`${API_BASE_URL}${ENDPOINTS.loginAdmin}`, {
@@ -71,6 +70,10 @@ export async function fetchContacts() {
   return handleResponse(response);
 }
 
+export async function fetchPaginatedArticles(page, limit) {
+  const response = await fetch(`${API_BASE_URL}${ENDPOINTS.articles}?page=${page}&limit=${limit}`);
+  return handleResponse(response);
+}
 
 export async function fetchAllArticles() {
   const response = await fetch(`${API_BASE_URL}${ENDPOINTS.articles}`);
@@ -127,3 +130,59 @@ export async function fetchArticleBySlug(slug) {
   return handleResponse(response);
 }
 
+export async function fetchCommentsByArticleId(articleId) {
+  const response = await fetch(`${API_BASE_URL}/articles/${articleId}/comments`);
+  return handleResponse(response);
+}
+
+export async function postCommentToArticle(articleId, text) {
+  const token = getTokenOrThrow();
+  const response = await fetch(`${API_BASE_URL}/articles/${articleId}/comments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify({ text }),
+  });
+
+  return handleResponse(response);
+}
+
+export async function addBookmark(articleId) {
+  const token = getTokenOrThrow();
+  const response = await fetch(`${API_BASE_URL}${ENDPOINTS.bookmarks}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify({ articleId }),
+  });
+
+  return handleResponse(response);
+}
+
+export async function fetchUserBookmarks() {
+  const token = getTokenOrThrow();
+  const response = await fetch(`${API_BASE_URL}${ENDPOINTS.bookmarks}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return handleResponse(response);
+}
+
+export async function deleteBookmark(articleId) {
+  const token = getTokenOrThrow();
+  const response = await fetch(`${API_BASE_URL}${ENDPOINTS.bookmarks}/${articleId}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return handleResponse(response);
+}

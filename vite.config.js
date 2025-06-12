@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/NaraStocksm/',
   server: {
-    host: '127.0.0.1',
+    host: 'localhost',
     port: 5173,
     cors: true,
     allowedHosts: [
