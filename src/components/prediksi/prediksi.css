@@ -1,0 +1,21 @@
+.apexcharts-toolbar svg,
+.apexcharts-toolbar button,
+.apexcharts-toolbar span {
+  color: rgb(255, 255, 255) !important;
+  fill: rgb(255, 255, 255) !important;
+  stroke: rgba(255, 255, 255, 0) !important;
+}
+
+
+.apexcharts-tooltip, .apexcharts-tooltip-series-group, .apexcharts-xaxistooltip, .apexcharts-yaxistooltip {
+  background: rgba(255, 255, 255, 0.9) !important; 
+  color: rgb(0, 0, 0) !important; 
+}
+
+.apexcharts-tooltip-text {
+  color: rgb(0, 0, 0) !important;
+}
+
+.apexcharts-toolbar button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
