@@ -52,7 +52,7 @@ export default function Prediksi() {
   const [user, setUser] = useState(null);
   const location = useLocation();
 
-  const url = 'http://70.153.80.133:8000/';
+  const url = 'http://20.2.250.28:5000';
   const symbol = currencyPairs[selectedPair];
 
   useEffect(() => {

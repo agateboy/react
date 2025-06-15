@@ -26,7 +26,7 @@ const UserSignUpPage = () => {
         setErrorMessage('');
         setTimeout(() => {
           setShowSuccessPopup(false);
-          window.location.href = '/NaraStocksm/login';
+          window.location.href = '/login';
         }, 1500); // Popup tampil 1.5 detik lalu redirect
       },
     });
@@ -150,7 +150,7 @@ const UserSignUpPage = () => {
         </form>
         <p className="text-center text-gray-600 text-sm mt-10">
           Already have an account?
-          <a className="font-semibold text-black hover:underline" href="/NaraStocksm/login">
+          <a className="font-semibold text-black hover:underline" href="/login">
             Log In
           </a>
         </p>

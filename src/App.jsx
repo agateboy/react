@@ -31,7 +31,7 @@ function App() {
   ];
 
   return (
-    <Router basename="/NaraStocksm">
+    <Router basename="/">
       <Routes>
         <Route
           path="/"
